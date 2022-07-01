@@ -37,17 +37,17 @@ def padding(grp):
 
 #########################################################################################################################################################
 
-import keras
+import tensorflow
 
-from keras.layers import Conv1D
-from keras.layers import Dense
-from keras.layers import Dropout
-from keras.layers import LSTM
-from keras.layers import MaxPooling1D
+from tensorflow.keras.layers import Conv1D
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.layers import Dropout
+from tensorflow.keras.layers import LSTM
+from tensorflow.keras.layers import MaxPooling1D
 
-from keras.models import Sequential
+from tensorflow.keras.models import Sequential
 
-from keras.optimizers import Adam
+from tensorflow.keras.optimizers import Adam
 
 
 def model():
@@ -92,8 +92,38 @@ def test():
     
     #
     select = request.form.get('comp_select')
+        
+    def csv(a):
+
+        global df1, df2, df3, df4, df5
+
+        if a == 'Inlier confused data':
+            df1 = pd.read_csv('test_cases/Inlier_Confused_data.csv', index_col = 0)
+            return df1
+
+        elif a == 'Inlier Not-confused data':
+            df2 = pd.read_csv('test_cases/Inlier_Not_confused_data.csv', index_col = 0)
+            return df2
+
+        elif a == 'Outlier Attention and Mediation data':
+            df3 = pd.read_csv('test_cases/Outlier_Attention_and_Mediation_data.csv', index_col = 0)
+            return df3
+
+        elif a == 'Outlier min Alpha1 data':
+            df4 = pd.read_csv('test_cases/Outlier_Alpha1_data.csv', index_col = 0)
+            return df4
+
+        elif a == 'Outlier max Beta1 data':
+            df5 = pd.read_csv('test_cases/Outlier_Beta1_data.csv', index_col = 0)
+            return df5
+
+        return df1 or df2 or df3 or df4 or df5
+
 
     df = csv(a = str(select)) # just to see what select is
+    
+    # This loads your dict
+    min_max_dict = pickle.load(open('pickle_files/min_max_Range.pkl','rb'))
 
     if df.loc[:, ['Attention']].eq(0).any().any() + df.loc[:, ['Mediation']].eq(0).any().any():
         return 'Attention and Mediation Outlier !! Enter valid values...'
@@ -135,6 +165,9 @@ def test():
         X = np.array(X)
         
         # StandardScaler model
+        Standard_Scaler = pickle.load(open('pickle_files/Standard_Scaler.pkl','rb'))
+   
+        # StandardScaler model
         X = Standard_Scaler.transform(X)
 
         X = np.reshape(X, (1, 144, 11))
@@ -158,38 +191,6 @@ def test():
 #########################################################################################################################################################
 
 if __name__=='__main__':
-
-    def csv(a):
-
-        global df1, df2, df3, df4, df5
-
-        if a == 'Inlier confused data':
-            df1 = pd.read_csv('test_cases/Inlier_Confused_data.csv', index_col = 0)
-            return df1
-
-        elif a == 'Inlier Not-confused data':
-            df2 = pd.read_csv('test_cases/Inlier_Not_confused_data.csv', index_col = 0)
-            return df2
-
-        elif a == 'Outlier Attention and Mediation data':
-            df3 = pd.read_csv('test_cases/Outlier_Attention_and_Mediation_data.csv', index_col = 0)
-            return df3
-
-        elif a == 'Outlier min Alpha1 data':
-            df4 = pd.read_csv('test_cases/Outlier_Alpha1_data.csv', index_col = 0)
-            return df4
-
-        elif a == 'Outlier max Beta1 data':
-            df5 = pd.read_csv('test_cases/Outlier_Beta1_data.csv', index_col = 0)
-            return df5
-
-        return df1 or df2 or df3 or df4 or df5
-
-    # This loads your dict
-    min_max_dict = pickle.load(open('pickle_files/min_max_Range.pkl','rb'))
-
-    # StandardScaler model
-    Standard_Scaler = pickle.load(open('pickle_files/Standard_Scaler.pkl','rb'))
-    
-    #app.run(debug = True)
-    app.run(host = '0.0.0.0', port = 4000)
+ 
+    app.run(debug = True)
+    #app.run(host = '0.0.0.0', port = 4000)
