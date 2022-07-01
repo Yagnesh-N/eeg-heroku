@@ -1,18 +1,70 @@
-<!doctype html>
-<link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename = 'style.css') }}">
-<div class = "center-on-page">  
-<h1>Improve MOOC's Feedback Interaction Using EEG data</h1>
-<img src = "{{url_for('static', filename = 'EEG_image.jpg')}}" alt = "EEG_image" width = "600" height = "400" />
-<pre></pre>
-<pre></pre>
-<form class = "form-inline" method = "POST" action = "{{ url_for('test') }}">
-   <div class = "select">
-    
-    <select name = "comp_select" class = "selectpicker form-control">
-    {% for o in data %}
-     <option value = "{{ o.name }}">{{ o.name }}</option>
-    {% endfor %}
-    </select>
-   </div>
-    <button type = "submit" class = "btn">Submit</button>
-</form>
+<!DOCTYPE html>
+<html>
+
+<style>
+
+body {
+      color            : #161616;
+      text-align       : center;
+      background-color : currentColor;
+      }
+
+.center-on-page {
+                 position  : absolute;
+                 top       : 50%;
+                 left      : 50%;
+                 transform : translate(-50%,-50%);
+                 }
+
+.image{
+       display      : block;
+       margin-left  : 100px;
+       margin-right : 100px;
+       }
+
+p {
+   margin-left  : 230px;
+   margin-right : 230px;
+   text-align   : center;
+   font-size    : 40px;
+   color        : #99ccff;
+   }
+
+input[type = submit]{
+                     background-color : #4CAF50;
+                     border           : none;
+                     color            : white;
+                     padding          : 3px 3px;
+                     font-size        : 15px;
+                     text-decoration  : none;
+                     margin           : 2px 2px; 
+                     text-align       : center;
+                     }
+
+	
+</style>
+
+<body>
+   	<p>Using EEG to Improve MOOC's Feedback Interaction</p>
+	<div class = 'image'>
+		
+		<img src = "{{url_for('static', filename = 'EEG_image.jpg')}}" alt = "EEG_image" width = "550" height = "400" />
+
+	</div>
+	
+	<form class = "form-inline" method = "POST" action = "{{ url_for('test') }}">
+        <p style = "color : #99ccff; font-size : 28px; text-align : center;"> Select your option </p>
+        <div class = "select">
+        <select name = "comp_select" class = "selectpicker form-control">
+         {% for o in data %}
+          <option value = "{{ o.name }}">{{ o.name }}</option>
+         {% endfor %}
+         </select>
+        </div>
+        <input type = "submit">
+     </form> 
+	
+</body>
+</html>
+
+
