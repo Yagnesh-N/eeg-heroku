@@ -70,7 +70,7 @@ def model():
                     metrics   = ['accuracy'])
 
     # weights loading
-    Model_1.load_weights('model_weights/Model.hdf5')
+    Model_1.load_weights('model_weights/Model_weights.hdf5')
 
     return Model_1
 
