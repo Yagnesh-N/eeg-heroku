@@ -37,15 +37,15 @@ def padding(grp):
 
 #########################################################################################################################################################
 
-from tensorflow.keras.layers import Conv1D
-from tensorflow.keras.layers import Dense
-from tensorflow.keras.layers import Dropout
-from tensorflow.keras.layers import LSTM
-from tensorflow.keras.layers import MaxPooling1D
+from keras.layers import Conv1D
+from keras.layers import Dense
+from keras.layers import Dropout
+from keras.layers import LSTM
+from keras.layers import MaxPooling1D
 
-from tensorflow.keras.models import Sequential
+from keras.models import Sequential
 
-from tensorflow.keras.optimizers import Adam
+from keras.optimizers import Adam
 
 
 def model():
