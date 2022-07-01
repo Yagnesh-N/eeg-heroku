@@ -37,6 +37,8 @@ def padding(grp):
 
 #########################################################################################################################################################
 
+import keras
+
 from keras.layers import Conv1D
 from keras.layers import Dense
 from keras.layers import Dropout
