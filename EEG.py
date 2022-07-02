@@ -86,7 +86,10 @@ def test():
     data_file = request.files['file']
 
     df = pd.read_csv(data_file.filename, index_col = 0)
-        
+     
+    # This loads your dict
+    min_max_dict = pickle.load(open('pickle_files/min_max_Range.pkl','rb'))
+
     if df.loc[:, ['Attention']].eq(0).any().any() + df.loc[:, ['Mediation']].eq(0).any().any():
         return 'Attention and Mediation Outlier !! Enter valid values...'
 
@@ -127,6 +130,9 @@ def test():
         X = np.array(X)
         
         # StandardScaler model
+        Standard_Scaler = pickle.load(open('pickle_files/Standard_Scaler.pkl','rb'))
+    
+        # StandardScaler model
         X = Standard_Scaler.transform(X)
 
         X = np.reshape(X, (1, 144, 11))
@@ -151,11 +157,4 @@ def test():
 
 if __name__=='__main__':
 
-    
-    # This loads your dict
-    min_max_dict = pickle.load(open('pickle_files/min_max_Range.pkl','rb'))
-
-    # StandardScaler model
-    Standard_Scaler = pickle.load(open('pickle_files/Standard_Scaler.pkl','rb'))
-    
     app.run(debug = True)
