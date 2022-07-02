@@ -85,7 +85,7 @@ def test():
     #
     data_file = request.files['file']
 
-    df = pd.read_csv(data_file.filename, index_col = 0)
+    df = pd.read_csv(data_file, index_col = 0)
      
     # This loads your dict
     min_max_dict = pickle.load(open('pickle_files/min_max_Range.pkl','rb'))
