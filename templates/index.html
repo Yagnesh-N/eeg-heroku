@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<title>Background</title>
+	<body style = "background-color: black;">
+
+<style>
+
+body {
+      overflow : auto;
+     }
+
+.image{
+       display      : block;
+       margin-left  : 485px;
+       margin-right : 485px;
+	  }
+
+p {
+   text-align : center;
+   font-size  : 45px;
+   color      : #99ccff;
+  }
+
+input[type = file]{
+                   background-color : black;
+ 				   border           : none;
+  				   color            : gray;
+  				   padding          : 2px 2px;
+  				   font-size        : 15px;
+  				   margin-left      : 580px;
+  				   text-decoration  : none;
+  				   text-align       : center;
+  				  }
+
+input[type = submit]{
+ 					 background-color : #4CAF50;
+  					 border           : none;
+ 					 color            : white;
+ 					 padding          : 5px 5px;
+ 					 font-size        : 15px;
+ 					 text-decoration  : none;
+ 					 margin           : 2px 2px;
+ 					 text-align       : center;
+  					}
+	
+</style>
+
+<body>
+   	<p>Using EEG to Improve MOOC's Feedback Interaction</p>
+	<div class = 'image'>
+		
+		<img src = "{{url_for('static', filename = 'EEG_image.jpg')}}" alt = "EEG_image" width = "560" height = "400" />
+
+	</div>
+	
+	<form action = "test" method = "POST" enctype = "multipart/form-data">
+		<p style = "color : #99ccff; font-size: 40px; text-align: center;"> Upload a valid csv file here</p>
+		<input type = "file" name = "file">
+		<input type = "submit" name = "btn">
+	</form>
+
+	
+
+</body>
+</html>
+
+
+
